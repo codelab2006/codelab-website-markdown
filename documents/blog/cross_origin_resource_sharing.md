@@ -1,6 +1,6 @@
 # Cross-Origin Resource Sharing (CORS) 详解
 > author: Yongjian Huang
-> tags: http
+> tags: HTTP
 
 文章摘要
 **********
