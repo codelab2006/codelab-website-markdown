@@ -7,18 +7,18 @@
 文章正文
 
 
-****************************************************************************************************
-*Italic*                        _Italic_                        Italic
+***********************************************************
+*Italic*                        _Italic_
 
-**Bold**                        __Bold__                        Bold
+**Bold**                        __Bold__
 
-# Heading 1                     Heading 1                       Heading 1
+# Heading 1                     Heading 1
                                 =========
 
-## Heading 2                    Heading 2                       Heading 2
+## Heading 2                    Heading 2
                                 ---------
 
-[Link](http://a.com)            [Link][1]                       Link
+[Link](http://a.com)            [Link][1]
                                 ⋮
                                 [1]: http://b.org
 
@@ -47,4 +47,4 @@ Horizontal Rule                 Horizontal Rule
 print '3 backticks or'          ····print '3 backticks or'
 print 'indent 4 spaces'         ····print 'indent 4 spaces'
 ```
-****************************************************************************************************
+***********************************************************
