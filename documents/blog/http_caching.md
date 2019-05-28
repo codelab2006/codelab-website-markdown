@@ -2,11 +2,11 @@
 > author: Yongjian Huang
 > tags: HTTP
 
-通过网络从服务器获取数据是一个缓慢的过程。如果重复的从服务器获取相同的数据，将会对网络资源造成不必要的浪费。对于浏览器这种主要通过网络来获取数据的客户端来说，缓存并重复利用之前获取的数据是如此的重要。幸运的是目前的浏览器都提供了缓存数据的功能。但是浏览器应该在何时缓存数据，应该将数据缓存多长时间？这就需要服务器通过 HTTP 协议来告诉浏览器，服务器通过在 HTTP Response Header 添加 Expires, Cache-Control, Last-Modified, Etag 等字段来告诉浏览器应该如何缓存数据。
+通过网络从服务器获取数据是一个缓慢的过程。如果重复的从服务器获取相同的数据，这将会对网络资源造成浪费。对于浏览器这种主要通过网络来获取数据的客户端来说，缓存并重复利用之前获取的数据是如此的重要。幸运的是目前的浏览器都提供了缓存数据的功能。但是浏览器应该在何时缓存数据，应该将数据缓存多长时间？这就需要服务器通过 HTTP 协议来告诉浏览器，服务器通过在 HTTP Response Header 添加 Expires, Cache-Control, Last-Modified, Etag 等字段来通知浏览器应该如何缓存数据。
 **********
 ## Expires
 
-服务器通过在 HTTP Response Header 中添加一个 Expires 字段（例如：`Expires: Mon, 27 May 2019 14:06:06 GMT`）来通知浏览器缓存当前请求的数据，并在指定的过期时间之前请重复使用它们，不必再向服务器请求相同的数据。而这个过期时间就是 Expires 字段的值，这里是 `Mon, 27 May 2019 14:06:06 GMT`。我们来看一个具体的例子：
+服务器通过在 HTTP Response Header 中添加一个 Expires 字段（例如：`Expires: Mon, 27 May 2019 14:06:06 GMT`）来通知浏览器缓存当前请求的数据，并在指定的过期时间之前如果再次需要相同的数据请从缓存中取，不必再向服务器发送请求。而这个过期时间就是 Expires 字段的值，这里是 `Mon, 27 May 2019 14:06:06 GMT`。我们来看一个具体的例子：
 1. 浏览器向服务器发送了一个 Request 我们称它为 Request A（URL为 `http://127.0.0.1:3000/`）
 2. 服务器返回了一个 Response 我们称它为 Response A（注意 Response Header 中有一个 Expires 字段 `Expires: Mon, 27 May 2019 14:39:56 GMT`）
 
