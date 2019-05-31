@@ -1,0 +1,8 @@
+# 享元模式（Flyweight pattern）
+> author: Yongjian Huang
+> tags: 设计模式, Structural
+
+文章摘要
+*********
+```
+```
