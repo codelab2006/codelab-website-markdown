@@ -12,13 +12,14 @@ package top.codelab.main;
  * 是否 Lazy 初始化：否
  * 是否多线程安全：是
  */
-class Singleton {
+class HungrySingleton {
 
-    private static Singleton instance = new Singleton();
+    private static HungrySingleton instance = new HungrySingleton();
 
-    private Singleton() {}
+    private HungrySingleton() {
+    }
 
-    public static Singleton getInstance() {
+    public static HungrySingleton getInstance() {
         return instance;
     }
 
@@ -32,15 +33,16 @@ class Singleton {
  * 是否 Lazy 初始化：是
  * 是否多线程安全：是
  */
-class Singleton {
+class StaticInnerClassSingleton {
 
     private static class SingletonHolder {
-        private static final Singleton instance = new Singleton();
+        private static final StaticInnerClassSingleton instance = new StaticInnerClassSingleton();
     }
 
-    private Singleton() {}
+    private StaticInnerClassSingleton() {
+    }
 
-    public static final Singleton getInstance() {
+    public static final StaticInnerClassSingleton getInstance() {
         return SingletonHolder.instance;
     }
 
@@ -54,7 +56,7 @@ class Singleton {
  * 是否 Lazy 初始化：是
  * 是否多线程安全：是
  */
-enum Singleton {
+enum EnumSingleton {
     INSTANCE;
 
     public void run() {
@@ -65,7 +67,9 @@ enum Singleton {
 public class Main {
 
     public static void main(String[] args) {
-        Singleton.INSTANCE.run();
+        HungrySingleton.getInstance().run();
+        StaticInnerClassSingleton.getInstance().run();
+        EnumSingleton.INSTANCE.run();
     }
 }
 ```
