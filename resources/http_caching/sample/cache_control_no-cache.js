@@ -6,8 +6,8 @@ const port = 3000;
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html');
-  res.setHeader('Cache-Control', 'max-age=30');
-  res.end('<a href="/">Hello World Cache-Control</a>');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.end('<a href="/">Hello World Cache-Control no-cache</a>');
 });
 
 server.listen(port, hostname, () => {
