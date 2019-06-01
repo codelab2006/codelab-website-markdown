@@ -36,13 +36,13 @@ class HungrySingleton {
 class StaticInnerClassSingleton {
 
     private static class SingletonHolder {
-        private static final StaticInnerClassSingleton instance = new StaticInnerClassSingleton();
+        private static StaticInnerClassSingleton instance = new StaticInnerClassSingleton();
     }
 
     private StaticInnerClassSingleton() {
     }
 
-    public static final StaticInnerClassSingleton getInstance() {
+    public static StaticInnerClassSingleton getInstance() {
         return SingletonHolder.instance;
     }
 

@@ -15,7 +15,7 @@ interface Graphic {
 
 class CompositeGraphic implements Graphic {
 
-    private final ArrayList<Graphic> childGraphics = new ArrayList<>();
+    private ArrayList<Graphic> childGraphics = new ArrayList<>();
 
     public void add(Graphic graphic) {
         this.childGraphics.add(graphic);
