@@ -1,6 +1,6 @@
 # 组合模式（Composite pattern）
 > author: Yongjian Huang
-> tags: 设计模式, Structural
+> tags: 设计模式, 结构型模式
 
 文章摘要
 *********

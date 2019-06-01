@@ -1,6 +1,6 @@
 # 建造者模式（Builder pattern）
 > author: Yongjian Huang
-> tags: 设计模式, Creational
+> tags: 设计模式, 创建型模式
 
 文章摘要
 **********

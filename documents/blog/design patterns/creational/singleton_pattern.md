@@ -1,6 +1,6 @@
 # 单例模式（Singleton pattern）
 > author: Yongjian Huang
-> tags: 设计模式, Creational
+> tags: 设计模式, 创建型模式
 
 文章摘要
 **********
