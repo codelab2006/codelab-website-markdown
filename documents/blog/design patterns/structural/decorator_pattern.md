@@ -31,7 +31,7 @@ class Javelin implements Weapon {
 abstract class WeaponDecorator implements Weapon {
     private Weapon weapon;
 
-    public WeaponDecorator(Weapon weapon) {
+    WeaponDecorator(Weapon weapon) {
         this.weapon = weapon;
     }
 
@@ -42,7 +42,7 @@ abstract class WeaponDecorator implements Weapon {
 
 class FireWeapon extends WeaponDecorator {
 
-    public FireWeapon(Weapon weapon) {
+    FireWeapon(Weapon weapon) {
         super(weapon);
     }
 
@@ -54,7 +54,7 @@ class FireWeapon extends WeaponDecorator {
 
 class IceWeapon extends WeaponDecorator {
 
-    public IceWeapon(Weapon weapon) {
+    IceWeapon(Weapon weapon) {
         super(weapon);
     }
 

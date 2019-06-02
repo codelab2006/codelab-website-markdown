@@ -50,7 +50,7 @@ class DELLPCFactory implements PCFactory {
 public class Main {
 
     public static void main(String[] args) {
-        PCFactory factory = null;
+        PCFactory factory;
         factory = new HPPCFactory();
         factory.createPC().run();
 

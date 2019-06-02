@@ -63,7 +63,7 @@ class LightningToMicroUsbAdapter implements MicroUsbPhone {
 
     private LightningPhone lightningPhone;
 
-    public LightningToMicroUsbAdapter(LightningPhone lightningPhone) {
+    LightningToMicroUsbAdapter(LightningPhone lightningPhone) {
         this.lightningPhone = lightningPhone;
     }
 
@@ -81,12 +81,12 @@ class LightningToMicroUsbAdapter implements MicroUsbPhone {
 
 public class Main {
 
-    static void rechargeMicroUsbPhone(MicroUsbPhone phone) {
+    private static void rechargeMicroUsbPhone(MicroUsbPhone phone) {
         phone.useMicroUsb();
         phone.recharge();
     }
 
-    static void rechargeLightningPhone(LightningPhone phone) {
+    private static void rechargeLightningPhone(LightningPhone phone) {
         phone.useLightning();
         phone.recharge();
     }

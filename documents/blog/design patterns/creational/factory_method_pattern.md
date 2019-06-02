@@ -30,7 +30,7 @@ class DELLPC implements PC {
 abstract class PCFactory {
     protected abstract PC makePC();
 
-    public PC createPC() {
+    PC createPC() {
         return this.makePC();
     }
 }

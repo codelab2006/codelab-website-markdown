@@ -8,9 +8,9 @@
 package top.codelab.main;
 
 class PC {
-    public String input;
-    public String processer;
-    public String output;
+    String input;
+    String processer;
+    String output;
 
     @Override
     public String toString() {
@@ -32,7 +32,7 @@ class PCBuilderImpl implements PCBuilder {
 
     private PC model;
 
-    public PCBuilderImpl() {
+    PCBuilderImpl() {
         this.model = new PC();
     }
 
@@ -67,11 +67,11 @@ class PCBuilderImpl implements PCBuilder {
 class BuilderDirector {
     private PCBuilder pcBuilder;
 
-    public BuilderDirector(PCBuilder pcBuilder) {
+    BuilderDirector(PCBuilder pcBuilder) {
         this.pcBuilder = pcBuilder;
     }
 
-    public PC construct() {
+    PC construct() {
         return this.pcBuilder.setInput("iii").setProcesser("ppp").setOutput("ooo").build();
     }
 }

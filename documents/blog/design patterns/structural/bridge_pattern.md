@@ -8,7 +8,7 @@
 package top.codelab.main;
 
 interface Logger {
-    public void log(String message);
+    void log(String message);
 
     static Logger info() {
         return message -> System.out.println("info: " + message);
@@ -22,11 +22,11 @@ interface Logger {
 abstract class AbstractAccount {
     private Logger logger = Logger.info();
 
-    public void setLogger(Logger logger) {
+    void setLogger(Logger logger) {
         this.logger = logger;
     }
 
-    protected void operate(String message, boolean result) {
+    void operate(String message, boolean result) {
         this.logger.log(message + " result " + result);
     }
 }
@@ -34,15 +34,15 @@ abstract class AbstractAccount {
 class Account extends AbstractAccount {
     private int balance;
 
-    public Account(int balance) {
+    Account(int balance) {
         this.balance = balance;
     }
 
-    public boolean isBalanceLow() {
+    boolean isBalanceLow() {
         return this.balance < 50;
     }
 
-    public void withdraw(int amount) {
+    void withdraw(int amount) {
         boolean shouldPerform = this.balance >= amount;
         if (shouldPerform) {
             this.balance -= amount;

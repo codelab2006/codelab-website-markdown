@@ -19,11 +19,11 @@ class HungrySingleton {
     private HungrySingleton() {
     }
 
-    public static HungrySingleton getInstance() {
+    static HungrySingleton getInstance() {
         return instance;
     }
 
-    public void run() {
+    void run() {
         System.out.println("Singleton......");
     }
 }
@@ -42,11 +42,11 @@ class StaticInnerClassSingleton {
     private StaticInnerClassSingleton() {
     }
 
-    public static StaticInnerClassSingleton getInstance() {
+    static StaticInnerClassSingleton getInstance() {
         return SingletonHolder.instance;
     }
 
-    public void run() {
+    void run() {
         System.out.println("Singleton......");
     }
 }

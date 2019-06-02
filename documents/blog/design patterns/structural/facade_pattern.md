@@ -8,19 +8,19 @@
 package top.codelab.main;
 
 class CPU {
-    public void execute() {
+    void execute() {
         System.out.println("CPU execute......");
     }
 }
 
 class Memory {
-    public void read() {
+    void read() {
         System.out.println("Memory read......");
     }
 }
 
 class HardDrive {
-    public void read() {
+    void read() {
         System.out.println("HardDrive read......");
     }
 }
@@ -30,13 +30,13 @@ class Computer {
     private Memory memory;
     private HardDrive hardDrive;
 
-    public Computer() {
+    Computer() {
         this.cpu = new CPU();
         this.memory = new Memory();
         this.hardDrive = new HardDrive();
     }
 
-    public void run() {
+    void run() {
         this.hardDrive.read();
         this.memory.read();
         this.cpu.execute();

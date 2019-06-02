@@ -10,14 +10,14 @@ package top.codelab.main;
 import java.util.ArrayList;
 
 interface Graphic {
-    public void print();
+    void print();
 }
 
 class CompositeGraphic implements Graphic {
 
     private ArrayList<Graphic> childGraphics = new ArrayList<>();
 
-    public void add(Graphic graphic) {
+    void add(Graphic graphic) {
         this.childGraphics.add(graphic);
     }
 

@@ -18,7 +18,7 @@ class RealImage implements Image {
 
     private String filename;
 
-    public RealImage(String filename) {
+    RealImage(String filename) {
         this.filename = filename;
         this.loadImageFromDisk();
     }
@@ -29,7 +29,7 @@ class RealImage implements Image {
 
     @Override
     public void display() {
-        System.out.println("Displaying......" + filename);
+        System.out.println("Displaying......" + this.filename);
     }
 }
 
@@ -38,7 +38,7 @@ class ProxyImage implements Image {
     private String filename;
     private RealImage image;
 
-    public ProxyImage(String filename) {
+    ProxyImage(String filename) {
         this.filename = filename;
 
     }

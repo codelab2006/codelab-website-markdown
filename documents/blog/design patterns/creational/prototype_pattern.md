@@ -9,9 +9,9 @@ package top.codelab.main;
 
 abstract class PC implements Cloneable {
 
-    protected String logo;
+    String logo;
 
-    public PC(String logo) {
+    PC(String logo) {
         this.logo = logo;
     }
 
@@ -25,7 +25,7 @@ abstract class PC implements Cloneable {
 
 class HPPC extends PC {
 
-    public HPPC(String logo) {
+    HPPC(String logo) {
         super(logo);
     }
 
@@ -37,7 +37,7 @@ class HPPC extends PC {
 
 class DELLPC extends PC {
 
-    public DELLPC(String logo) {
+    DELLPC(String logo) {
         super(logo);
     }
 

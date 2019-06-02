@@ -18,36 +18,33 @@ class Circle implements Shape {
     private String color;
     private int x;
     private int y;
-    private int radius;
 
-    public Circle(String color) {
+    Circle(String color) {
         this.color = color;
     }
 
-    public void setX(int x) {
+    Circle setX(int x) {
         this.x = x;
+        return this;
     }
 
-    public void setY(int y) {
+    Circle setY(int y) {
         this.y = y;
+        return this;
     }
-
-    public void setRadius(int radius) {
-        this.radius = radius;
-    }
-
 
     @Override
     public void draw() {
+        int radius = 100;
         System.out.println("Circle: Draw() [Color : " + this.color
-                + ", x : " + this.x + ", y :" + this.y + ", radius :" + this.radius);
+                + ", x : " + this.x + ", y :" + this.y + ", radius :" + radius);
     }
 }
 
 class Factory {
     private static Map<String, Shape> map = new HashMap<>();
 
-    public static Shape getCircle(String color) {
+    static Shape getCircle(String color) {
         return map.computeIfAbsent(color, k -> new Circle(color));
     }
 }
@@ -58,12 +55,8 @@ public class Main {
 
     public static void main(String[] args) {
         for (int i = 0; i < 20; ++i) {
-            Circle circle =
-                    (Circle) Factory.getCircle(getRandomColor());
-            circle.setX(getRandomX());
-            circle.setY(getRandomY());
-            circle.setRadius(100);
-            circle.draw();
+            Shape c = ((Circle) Factory.getCircle(getRandomColor())).setX(getRandomX()).setY(getRandomY());
+            c.draw();
         }
     }
 
