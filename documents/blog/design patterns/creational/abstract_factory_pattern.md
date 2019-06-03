@@ -2,7 +2,7 @@
 > author: Yongjian Huang
 > tags: 设计模式-创建型模式
 
-文章摘要
+抽象工厂模式，如果你的的产品可以分为不同的产品族，可以考虑使用抽象工厂模式。
 **********
 ```
 package top.codelab.main;

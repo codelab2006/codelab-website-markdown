@@ -2,6 +2,9 @@
 > author: Yongjian Huang
 > tags: 设计模式-创建型模式
 
+单例模式，当我们需要某个类在整个程序的运行过程中只能有一个实例时使用（注意多个 Classloader 的情况）。
+这个唯一的实例的创建可以分为 Lazy 和非 Lazy，两种方式。
+在多线程情况下需要考虑线程安全问题。
 **********
 ```
 package top.codelab.main;
