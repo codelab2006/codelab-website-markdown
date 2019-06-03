@@ -1,6 +1,6 @@
 # 桥接模式（Bridge pattern）
 > author: Yongjian Huang
-> tags: 设计模式, 结构型模式
+> tags: 设计模式-结构型模式
 
 文章摘要
 **********

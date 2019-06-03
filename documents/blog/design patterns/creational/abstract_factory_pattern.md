@@ -1,6 +1,6 @@
 # 抽象工厂模式（Abstract factory pattern）
 > author: Yongjian Huang
-> tags: 设计模式, 创建型模式
+> tags: 设计模式-创建型模式
 
 文章摘要
 **********
