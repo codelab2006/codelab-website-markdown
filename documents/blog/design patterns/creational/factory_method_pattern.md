@@ -2,6 +2,7 @@
 > author: Yongjian Huang
 > tags: 设计模式-创建型模式
 
+工厂方法模式，当产品不区分产品族时使用。此模式便于添加新的产品，但是不便于添加新的产品族。
 **********
 ```
 package top.codelab.main;
