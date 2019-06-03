@@ -2,6 +2,7 @@
 > author: Yongjian Huang
 > tags: 设计模式-结构型模式
 
+享元模式，尝试重用现有的同类对象，减少对象的数量。解决大量同类对象导致的内存占用问题。
 **********
 ```
 package top.codelab.main;

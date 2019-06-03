@@ -2,6 +2,7 @@
 > author: Yongjian Huang
 > tags: 设计模式-结构型模式
 
+外观模式，隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。
 **********
 ```
 package top.codelab.main;
