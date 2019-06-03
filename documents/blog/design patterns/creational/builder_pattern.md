@@ -2,6 +2,8 @@
 > author: Yongjian Huang
 > tags: 设计模式-创建型模式
 
+建造者模式，当一个对象（产品）由多个部分组成时，我们可以把对象的创建过程封装到一个 Builder 中。
+可以通过传递到 Builder 的参数变化，来产生不同的产品。
 **********
 ```
 package top.codelab.main;
