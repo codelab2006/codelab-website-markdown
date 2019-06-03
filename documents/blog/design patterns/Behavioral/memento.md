@@ -2,6 +2,7 @@
 > author: Yongjian Huang
 > tags: 设计模式-行为型模式
 
+备忘录模式，保存一个对象的某个状态，以便在适当的时候恢复对象。
 **********
 ```
 package top.codelab.main;

@@ -2,6 +2,7 @@
 > author: Yongjian Huang
 > tags: 设计模式-行为型模式
 
+迭代器模式，提供一种顺序访问聚合对象元素的方法，而不会暴露其内部结构。
 **********
 ```
 package top.codelab.main;

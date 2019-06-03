@@ -2,6 +2,7 @@
 > author: Yongjian Huang
 > tags: 设计模式-行为型模式
 
+解释器模式，给定一个语言，定义它的文法表示，并定义一个解释器，这个解释器使用该标识来解释语言中的句子。
 **********
 ```
 package top.codelab.main;

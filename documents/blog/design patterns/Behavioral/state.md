@@ -2,6 +2,7 @@
 > author: Yongjian Huang
 > tags: 设计模式-行为型模式
 
+状态模式，将对象的行为封装为与某个状态有关的对象，当状态改变时，对象的行为也会随着发生变化。
 **********
 ```
 package top.codelab.main;

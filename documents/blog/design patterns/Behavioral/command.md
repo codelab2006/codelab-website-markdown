@@ -2,6 +2,7 @@
 > author: Yongjian Huang
 > tags: 设计模式-行为型模式
 
+命令模式，将方法调用封装在对象中，允许我们不知道请求的操作或请求对象的情况下发出请求。
 **********
 ```
 package top.codelab.main;

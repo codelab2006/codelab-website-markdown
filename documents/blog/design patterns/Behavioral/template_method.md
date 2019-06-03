@@ -2,6 +2,7 @@
 > author: Yongjian Huang
 > tags: 设计模式-行为型模式
 
+模板方法模式，在操作中定义算法的骨架，将一些步骤推迟到子类。
 **********
 ```
 package top.codelab.main;
