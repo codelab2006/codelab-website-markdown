@@ -4,8 +4,9 @@
 
 文章摘要
 **********
-## Iterable interfac
-实现了 Iterable 接口的对象，可以使用 for-each 语句进行迭代。
+## Iterable
+类型：interface
+描述：实现了 Iterable 的对象，可以使用 for-each 语句进行迭代。
 ```
 package top.codelab.main;
 
@@ -39,8 +40,9 @@ public class Main {
 }
 ```
 
-## Iterator interface
-Iterator 接口替代了 Enumeration 接口，Iterator 允许在迭代的过程中删除元素。
+## Iterator
+类型：interface
+描述：Iterator 替代了 Enumeration ，Iterator 允许在迭代的过程中删除元素。
 ```
 package top.codelab.main;
 
@@ -109,14 +111,17 @@ public class Main {
 }
 ```
 
-## Collection interface
-Collection 接口定义了一组针对集合的操作，许多常用的接口都从它继承，例如：Set，List，Queue。
+## Collection
+类型：interface
+描述：Collection 定义了一组针对集合的操作，许多常用的接口都从它继承，例如：Set，List，Queue。
 
-## Collections class
-Collections 是一个工具类，它包含了大量和集合相关的通用方法。
+## Collections
+类型：class
+描述：Collections 是一个工具类，它包含了大量和集合相关的通用方法。
 
-## Set interface
-Set 代表了一个元素不重复的集合，常用的实现类：HashSet，LinkedHashSet。
+## Set
+类型：interface
+描述：Set 代表了一个元素不重复的集合，常用的实现类：HashSet，LinkedHashSet。
 ```
 package top.codelab.main;
 
@@ -139,17 +144,24 @@ public class Main {
 }
 ```
 
-## HashSet class
-HashSet 类实现了 Set 接口，使用哈希表来存储数据，它的内部实现其实是使用了一个 HashMap 的实例，它不保证其元素的迭代顺序。
-HashSet 是非线程安全的，如果你需要在多线程环境下使用它，请使用 Collections.synchronizedSet 方法。
+## HashSet
+类型：class
+实现接口：Set
+保证迭代顺序：否
+线程安全：否，如果你需要在多线程环境下使用它，请使用 Collections.synchronizedSet 方法。
+描述：它的内部实现其实是使用了一个 HashMap 的实例。
 如果在创建 iterator 之后，使用了除 iterator.remove 方法之外的方法修改了集合，iterator 将抛出一个 ConcurrentModificationException 异常。请注意 iterator 也只能尽可能的抛出 ConcurrentModificationException 异常，编写依赖于此异常的程序以确保其正确性是错误的。
 
-## LinkedHashSet class
-LinkedHashSet 从 HashSet 继承，它的内部实现其实是使用了一个 LinkedHashMap 实例，保证了其元素的迭代顺序，迭代顺序就是元素的插入顺序。
-LinkedHashSet 是非线程安全的，如果你需要在多线程环境下使用它，请使用 Collections.synchronizedSet 方法。
+## LinkedHashSet
+类型：class
+父类：HashSet
+保证迭代顺序：是，迭代顺序就是元素的插入顺序。
+线程安全：否，如果你需要在多线程环境下使用它，请使用 Collections.synchronizedSet 方法。
+描述：它的内部实现其实是使用了一个 LinkedHashMap 实例。
 
-## SortedSet interface
-SortedSet 代表了一个支持排序的，元素不重复的集合，常用的实现类：TreeSet。
+## SortedSet
+类型：interface
+描述：SortedSet 代表了一个支持排序的，元素不重复的集合，常用的实现类：TreeSet。
 ```
 package top.codelab.main;
 
@@ -173,8 +185,10 @@ public class Main {
 }
 ```
 
-## NavigableSet interface
-NavigableSet 从 SortedSet 继承，它定义了额外的集合相关的功能，例如：ceiling, floor, higher, lower 等。
+## NavigableSet
+类型：interface
+父类：SortedSet
+描述：它定义了额外的集合相关的功能，例如：ceiling, floor, higher, lower 等。
 常用的实现类：TreeSet。
 ```
 package top.codelab.main;
@@ -201,44 +215,46 @@ public class Main {
 }
 ```
 
-## TreeSet class
+## TreeSet
+类型：class
+实现接口：NavigableSet
 TreeSet 实现了 NavigableSet 接口，它的内部实现其实是使用了一个 TreeMap 实例。
 TreeSet 是非线程安全的，如果你需要在多线程环境下使用它，请使用 Collections.synchronizedSortedSet 方法。
 
-## List
+## List interface
 List 代表了一个元素可以重复的有序集合，用户可以根据索引插入，获取，删除元素，可以对元素进行排序。
 List 还提供了一个特殊的迭代器 ListIterator，它允许元素插入和替换，以及 Iterator 接口提供的常规操作之外的双向访问。
 提供了一种方法来获得从列表中的指定位置开始的列表迭代器。
 
-## ArrayList
+## ArrayList class
 ArrayList 一个可伸缩的序列，实现了 List 接口，其容量大小可以变化，可以存储 null 值，还提供了一些维护内部数组的方法。
-它不是线程安全的，你可以使用 Collections.synchronizedList 方法去包装它，使其变为线程安全的。
-使用时避免一个线程迭代它的时候，另一个线程正好修改它，虽然这时 ConcurrentModificationException 异常会被抛出，但是此异常仅用于检测错误。
-如果需要在一个 ArrayList 中插入大量的数据，考虑先使用 ensureCapacity 增加容量，可以有效提升插入效率。
+ArrayList 是非线程安全的，如果你需要在多线程环境下使用它，请使用 Collections.synchronizedList 方法。
+如果在创建 iterator 之后，使用了除 iterator.remove 方法之外的方法修改了集合，iterator 将抛出一个 ConcurrentModificationException 异常。请注意 iterator 也只能尽可能的抛出 ConcurrentModificationException 异常，编写依赖于此异常的程序以确保其正确性是错误的。
+如果需要在一个 ArrayList 中插入大量的数据，考虑先使用 ensureCapacity 增加容量，避免大量的扩容操作，可以有效提升插入效率。
 
-## LinkedList
+## LinkedList class
 LinkedList 一个双向的链表，实现了 List 接口和 Deque 接口，可以存储 null 值。
-和 ArrayList 一样，不是线程安全的，你可以使用 Collections.synchronizedList 方法去包装它。
+LinkedList 是非线程安全的，如果你需要在多线程环境下使用它，请使用 Collections.synchronizedList 方法。
 
-## Vector
+## Vector class
 Vector 类似 ArrayList，它是线程安全的，但是并不推荐使用，推荐使用 ArrayList。
 
-## Stack
-Stack 一个后进先出的栈，继承于 Vector 类，但是并不推荐使用，应优先使用 ArrayDeque。
+## Stack class
+Stack 一个后进先出的栈，从 Vector 类继承，但是并不推荐使用，应优先使用 ArrayDeque。
 
-## Queue
-Queue 代表了一个队列，继承于 Collection 接口，除了基本的 Collection 操作外，还提供额外的插入，提取和检查操作。
+## Queue interface
+Queue 代表了一个队列，从 Collection 继承，除了基本的 Collection 操作外，还提供额外的插入，提取和检查操作。
 这些方法中的每一种都以两种形式存在：一种在操作失败时抛出异常，另一种返回特殊值（ null 或 false，具体取决于操作）。
 Queue 并不支持插入 null 值，即使有的实现，例如：LinkedList 允许它，但也不应该插入 null 值，因为 poll 方法会返回 null 表示队列中不存在某元素。
 
-## PriorityQueue
+## PriorityQueue class
 PriorityQueue 一个没有边界的队列，其中的元素按照自然排序或按照 Comparator 进行排序，PriorityQueue 不支持插入 null 值，依赖自然排序的队列也不允许插入一个不能进行排序的对象。
 PriorityQueue 不保证元素的迭代顺序（之前不是说有序的吗？这里的有序指的是当调用 poll 方法获取数据时是有序的）。
 如果你希望迭代时也是有序的，考虑这样处理：Arrays.sort(pq.toArray())。
 PriorityQueue 不是线程安全的，考虑使用线程安全的 PriorityBlockingQueue 类。
 
 ## Deque
-Deque 代表了一个双端队列，继承于 Queue 接口，支持有大小限制和没有大小限制的队列。
+Deque 代表了一个双端队列，从 Queue 继承，支持有大小限制和没有大小限制的队列。
 提供了访问队列两端元素的方法，提供了插入，移除和检查元素的方法。
 这些方法中的每一种都以两种形式存在：一种在操作失败时抛出异常，另一种返回特殊值（ null 或 false，具体取决于操作）。
 同样不鼓励插入 null 值。
@@ -303,7 +319,7 @@ IdentityHashMap 类似 HashMap，但在比较键（和值）时使用引用相�
 SortedMap 代表了一个支持排序的 Map，元素根据 key 值按照自然排序或按照 Comparator 进行排序。参考 SortedSet。
 
 ## NavigableMap
-NavigableMap 继承于 SortedMap，参考 NavigableSet
+NavigableMap 从 SortedMap 继承，参考 NavigableSet
 
 ## TreeMap
 TreeMap 一个基于红黑树的 NavigableMap 的实现。非线程安全，需要线程安全可使用 Collections.synchronizedSortedMap 方法进行包装。
