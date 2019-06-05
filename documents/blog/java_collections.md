@@ -4,7 +4,7 @@
 
 文章摘要
 **********
-## Iterable
+## Iterable interfac
 实现了 Iterable 接口的对象，可以使用 for-each 语句进行迭代。
 ```
 package top.codelab.main;
@@ -19,10 +19,16 @@ public class Main {
             public Iterator<Integer> iterator() {
                 return new Iterator<Integer>() {
                     private int i = 0;
+
                     @Override
-                    public boolean hasNext() { return true; }
+                    public boolean hasNext() {
+                        return true;
+                    }
+
                     @Override
-                    public Integer next() { return this.i++; }
+                    public Integer next() {
+                        return this.i++;
+                    }
                 };
             }
         }) {
@@ -33,8 +39,8 @@ public class Main {
 }
 ```
 
-## Iterator
-Iterator 替代了 Enumeration 接口，Iterator 允许在迭代的过程中删除元素。
+## Iterator interface
+Iterator 接口替代了 Enumeration 接口，Iterator 允许在迭代的过程中删除元素。
 ```
 package top.codelab.main;
 
@@ -103,14 +109,13 @@ public class Main {
 }
 ```
 
-## Collection
-Collection 定义了许多针对集合的操作，许多常用的接口都继承于它，例如：Set，List，Queue。
+## Collection interface
+Collection 接口定义了一组针对集合的操作，许多常用的接口都从它继承，例如：Set，List，Queue。
 
-## Collections
+## Collections class
 Collections 是一个工具类，它包含了大量和集合相关的通用方法。
-使用 Collections 类能帮你节约许多的开发时间。
 
-## Set
+## Set interface
 Set 代表了一个元素不重复的集合，常用的实现类：HashSet，LinkedHashSet。
 ```
 package top.codelab.main;
@@ -134,16 +139,16 @@ public class Main {
 }
 ```
 
-## HashSet
-HashSet 依靠哈希表来存储数据，它的内部实现其实是使用了一个 HashMap 的实例，它不保证其元素的迭代顺序。
-它不是线程安全的，你可以使用 Collections.synchronizedSet 方法去包装它，使其变为线程安全的。
-使用时避免一个线程迭代它的时候，另一个线程正好修改它，虽然这时 ConcurrentModificationException 异常会被抛出，但是此异常仅用于检测错误。
+## HashSet class
+HashSet 类实现了 Set 接口，使用哈希表来存储数据，它的内部实现其实是使用了一个 HashMap 的实例，它不保证其元素的迭代顺序。
+HashSet 是非线程安全的，如果你需要在多线程环境下使用它，请使用 Collections.synchronizedSet 方法。
+如果在创建 iterator 之后，使用了除 iterator.remove 方法之外的方法修改了集合，iterator 将抛出一个 ConcurrentModificationException 异常。请注意 iterator 也只能尽可能的抛出 ConcurrentModificationException 异常，编写依赖于此异常的程序以确保其正确性是错误的。
 
-## LinkedHashSet
-LinkedHashSet 类似于 HashSet，它的内部实现其实是使用了一个 LinkedHashMap 实例，保证了其元素的迭代顺序，迭代顺序就是元素的插入顺序。
-它也不是线程安全的，你可以使用 Collections.synchronizedSet 方法去包装它。
+## LinkedHashSet class
+LinkedHashSet 从 HashSet 继承，它的内部实现其实是使用了一个 LinkedHashMap 实例，保证了其元素的迭代顺序，迭代顺序就是元素的插入顺序。
+LinkedHashSet 是非线程安全的，如果你需要在多线程环境下使用它，请使用 Collections.synchronizedSet 方法。
 
-## SortedSet
+## SortedSet interface
 SortedSet 代表了一个支持排序的，元素不重复的集合，常用的实现类：TreeSet。
 ```
 package top.codelab.main;
@@ -168,8 +173,8 @@ public class Main {
 }
 ```
 
-## NavigableSet
-NavigableSet 继承于 SortedSet，它定义了额外的集合相关的功能，例如：ceiling, floor, higher, lower 等。
+## NavigableSet interface
+NavigableSet 从 SortedSet 继承，它定义了额外的集合相关的功能，例如：ceiling, floor, higher, lower 等。
 常用的实现类：TreeSet。
 ```
 package top.codelab.main;
@@ -196,9 +201,9 @@ public class Main {
 }
 ```
 
-## TreeSet
+## TreeSet class
 TreeSet 实现了 NavigableSet 接口，它的内部实现其实是使用了一个 TreeMap 实例。
-它也不是线程安全的，你可以使用 Collections.synchronizedSortedSet 方法去包装它。
+TreeSet 是非线程安全的，如果你需要在多线程环境下使用它，请使用 Collections.synchronizedSortedSet 方法。
 
 ## List
 List 代表了一个元素可以重复的有序集合，用户可以根据索引插入，获取，删除元素，可以对元素进行排序。
