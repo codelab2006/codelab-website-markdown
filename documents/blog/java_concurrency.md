@@ -146,6 +146,34 @@ System.out.println("main...");
 ```
 ### Synchronization
 #### Thread Interference
+```
+class Counter {
+    private int c = 0;
+    public void increment() {
+        c++;
+    }
+    public void decrement() {
+        c--;
+    }
+    public int value() {
+        return c;
+    }
+}
+```
+Counter 类是非线程安全的，c++ 表达式可以被分为三步来执行：
+
+1. 读取 c 的当前值
+2. 将读取的值加 1
+3. 将修改后的值写入变量 c
+
+c-- 表达式也同样如此。
+假设现在线程 A 调用了 increment 方法的同时线程 B 调用了 decrement 方法，这时可能出现一下的执行序列：
+1. Thread A: Retrieve c.
+2. Thread B: Retrieve c.
+3. Thread A: Increment retrieved value; result is 1.
+4. Thread B: Decrement retrieved value; result is -1.
+5. Thread A: Store result in c; c is now 1.
+6. Thread B: Store result in c; c is now -1.
 #### Memory Consistency Errors
 #### Synchronized Methods
 #### Intrinsic Locks and Synchronization
@@ -204,6 +232,9 @@ public class Main {
 #### Lock Objects
 #### Executors
 ##### Executor Interfaces
+- Executor
+- ExecutorService
+- ScheduledExecutorService
 ##### Thread Pools
 ##### Fork/Join
 #### Concurrent Collections
