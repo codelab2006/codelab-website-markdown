@@ -240,6 +240,37 @@ public class Main {
 #### Concurrent Collections
 #### Atomic Variables
 #### Concurrent Random Numbers
+### ThreadLocal
+```
+package top.codelab.main;
 
+class Handler implements Runnable {
 
+    private final ThreadLocal<Object> threadLocal = new ThreadLocal<>();
 
+    @Override
+    public void run() {
+        this.threadLocal.set((int) (Math.random() * 100D));
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ignored) {
+        }
+
+        System.out.println(this.threadLocal.get());
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) throws InterruptedException {
+        Handler handler = new Handler();
+        Thread thread1 = new Thread(handler);
+        Thread thread2 = new Thread(handler);
+        thread1.start();
+        thread2.start();
+        thread1.join();
+        thread2.join();
+    }
+}
+```
