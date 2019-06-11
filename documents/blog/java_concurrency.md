@@ -152,7 +152,50 @@ System.out.println("main...");
 #### Atomic Access
 ### Liveness
 #### Deadlock
+```
+package top.codelab.main;
+
+class Friend {
+    private final String name;
+
+    Friend(String name) {
+        this.name = name;
+    }
+
+    private String getName() {
+        return this.name;
+    }
+
+    synchronized void bow(Friend bower) {
+        System.out.format("%s: %s"
+                        + "  has bowed to me!%n",
+                this.name, bower.getName());
+        bower.bowBack(this);
+    }
+
+    private synchronized void bowBack(Friend bower) {
+        System.out.format("%s: %s"
+                        + " has bowed back to me!%n",
+                this.name, bower.getName());
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+        final Friend alphonse =
+                new Friend("Alphonse");
+        final Friend gaston =
+                new Friend("Gaston");
+        new Thread(() -> alphonse.bow(gaston)).start();
+        new Thread(() -> gaston.bow(alphonse)).start();
+    }
+}
+```
 #### Starvation and Livelock
+- Starvation
+假设一个对象的一个 synchronized 方法需要执行很长的时间，如果一个线程频繁的调用此方法，其他需要频繁同步访问同一对象的线程通常会被阻止。
+- Livelock
 ### Guarded Blocks
 ### Immutable Objects
 #### A Synchronized Class Example
