@@ -18,5 +18,5 @@ function fun(n) {
     }
   };
 }
-console.log(fun(1).fun(2).fun(3).sum())
+console.log(fun(1).fun(2).fun(3).fun(4).fun(5).sum())
 ```
