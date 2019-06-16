@@ -84,3 +84,111 @@ Symbol.for() 与 Symbol() 这两种写法，都会生成新的 Symbol。它们�
 let ss = Symbol.for("key");
 Symbol.keyFor(ss) // "key"
 ```
+## Proxy
+## Reflect
+## Promise
+通常使用 catch 而不是传递 onReject
+```
+new Promise((resolve, reject) => {}).then(() => {}).then(() => {}).then(() => {}).catch(() => {})
+```
+## Iterator 和 for...of 循环
+```
+function makeIterator(array) {
+    let index = 0;
+    return {
+        [Symbol.iterator]() {
+            return {
+                next() {
+                    let done = index < array.length;
+                    return {
+                        value: done ? array[index++] : undefined, done: !done
+                    }
+                },
+                return() {
+                    console.log('return');
+                    return {done: true}
+                }
+            }
+        }
+    }
+}
+
+for (let i of makeIterator([1,2,3,4,5])) {
+    console.log(i)
+}
+for (let i of makeIterator([1,2,3,4,5])) {
+    console.log(i)
+    break;
+}
+```
+## Generator
+Generator 函数有多种理解角度。语法上，首先可以把它理解成，Generator 函数是一个状态机，封装了多个内部状态。执行 Generator 函数会返回一个遍历器对象，也就是说，Generator 函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历 Generator 函数内部的每一个状态。
+```
+function* generator0() {
+    let v1 = yield 1;
+    let v2 = yield 2 + v1;
+    let v3 = yield 3 + v2;
+    return v3;
+}
+let g0 = generator0();
+let v = 0;
+do {
+    i = g0.next(v++);
+    console.log(i.value);
+} while(!i.done)
+
+function* fibonacci() {
+    let [prev, curr] = [0, 1];
+    while (true) {
+        yield curr;
+        [prev, curr] = [curr, prev + curr];
+    }
+}
+for (let n of fibonacci()) {
+    if (n > 1000) break;
+    console.log(n);
+}
+// 外部抛出内部捕获
+function* generator1() {
+    try {
+        yield 1;
+        yield 2;
+        yield 3;
+    } catch (e) {
+        console.log(e);
+    }
+    return 4;
+}
+let g1 = generator1();
+console.log(g1.next());
+console.log(g1.throw('error'));
+// 外部抛出外部捕获
+function* generator2() {
+    yield 1;
+    yield 2;
+    yield 3;
+    return 4;
+}
+let g2 = generator2();
+console.log(g2.next());
+try {
+    console.log(g2.throw('error'));
+} catch (e) {
+    console.log(e);
+}
+// 内部抛出外部捕获
+function* generator3() {
+    throw 'error';
+    yield 1;
+    yield 2;
+    yield 3;
+    return 4;
+}
+let g3 = generator3();
+try {
+    console.log(g3.next());
+} catch (e) {
+    console.log(e);
+    console.log(g3.next());
+}
+```
