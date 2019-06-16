@@ -192,3 +192,56 @@ try {
     console.log(g3.next());
 }
 ```
+## async & await
+async 是 Generator 函数的语法糖。await 命令只能用在 async 函数之中。
+```
+async function fun0() {
+    await new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('fun0 resolve');
+            resolve();
+        }, 0);
+    });
+}
+
+async function fun1() {
+    await new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('fun1 resolve');
+            resolve();
+        }, 0);
+    });
+}
+
+async function fun2() {
+    await fun0();
+    await fun1();
+    console.log('fun2');
+    return 'fun2';
+}
+
+fun2().then((v) => {
+    console.log(v);
+});
+
+// 有多种声明方式
+async function fun() {} // 函数声明
+const fun = async function () {} // 函数表达式
+const fun = async () => {} // 箭头函数
+let o = { async method() {} } // 对象的方法
+o.method().then(...)
+class C {
+    async method(name) {} // Class 的方法
+}
+
+// 错误处理
+async function fun() {
+    try {
+        const r1 = await fun1();
+        const r2 = await fun2();
+    }
+    catch (e) {
+        console.error(e);
+    }
+}
+```
