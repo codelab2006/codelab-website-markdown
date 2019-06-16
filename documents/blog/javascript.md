@@ -245,3 +245,7 @@ async function fun() {
     }
 }
 ```
+## Class
+```
+
+```
