@@ -8,9 +8,177 @@
 </head>
 
 <body>
-    <div id="application">
+    <div id="app-1">
+        <span>{{message}}</span>
+        <span v-once>{{message}}</span>
+        <p v-html="rawHtml"></p>
     </div>
     <script>
+        let app1 = new Vue({
+            el: '#app-1',
+            data: {
+                message: 'Hello World',
+                rawHtml: '<span style="color: red">This should be red</span>'
+            }
+        });
+        setTimeout(() => app1.message = 'Hello VUE', 1000);
+    </script>
+
+    <div id="app-2">
+        <span :title="message">鼠标悬停几秒钟查看此处动态绑定的提示信息！</span>
+        <a :href="website.href">{{website.name}}</a>
+        <span :[attributeName]="attrValue">动态标题</span>
+    </div>
+    <script>
+        let app2 = new Vue({
+            el: '#app-2',
+            data: {
+                message: 'Hello World',
+                website: {
+                    name: 'baidu',
+                    href: 'http://www.baidu.com'
+                },
+                attributename: 'title',
+                attrValue: '动态标题AAA'
+            }
+        });
+        setTimeout(() => {
+            app2.message = 'Hello VUE';
+            app2.website.name = 'bing'
+            app2.website.href = 'http://www.bing.com';
+            app2.attributename = 'title';
+            app2.attrValue = '动态标题BBB';
+        }, 1000);
+    </script>
+
+    <div id="app-3"><p v-if="seen">现在你看到我了</p></div>
+    <script>
+        let app3 = new Vue({
+            el: '#app-3',
+            data: { seen: true }
+        });
+        setTimeout(() => app3.seen = false, 1000);
+    </script>
+
+    <div id="app-4"><ul><li v-for="todo of todos">{{todo.text}}</li></ul></div>
+    <script>
+        let app4 = new Vue({
+            el: '#app-4',
+            data: {
+                todos: [{
+                    text: 'aaaaa'
+                }, {
+                    text: 'bbbbb'
+                }, {
+                    text: 'ccccc'
+                }]
+            }
+        });
+    </script>
+
+    <div id="app-5"><p>{{message}}</p><button @click="reverseMessage">反转信息</button></div>
+    <script>
+        let app5 = new Vue({
+            el: '#app-5',
+            data: {
+                message: 'Hello World'
+            },
+            methods: {
+                reverseMessage() {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        });
+    </script>
+
+    <div id="app-6"><p>{{ message }}</p><input v-model="message"></div>
+    <script>
+        let app6 = new Vue({
+            el: '#app-6',
+            data: {
+                message: 'Hello World'
+            }
+        });
+    </script>
+
+    <div id="app-7">
+        <ul>
+            <todo-item
+                v-for="item of todos"
+                v-bind:key="item.id"
+                v-bind:todo="item"
+            ></todo-item>
+        </ul>
+    </div>
+    <script>
+        Vue.component('todo-item', {
+            props: ['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        });
+        let app7 = new Vue({
+            el: '#app-7',
+            data: {
+                todos: [{
+                    id: 1,
+                    text: 'a'
+                }, {
+                    id: 2,
+                    text: 'b'
+                }, {
+                    id: 3,
+                    text: 'c'
+                }]
+            }
+        });
+    </script>
+
+    <div id="app-8">
+        <p>Original message: {{ message }}</p>
+        <p>Computed reversed message: {{ reversedMessage }}</p>
+        <button @click="changeMessage">click me</button>
+    </div>
+    <script>
+        let app8 = new Vue({
+            el: '#app-8',
+            data: {
+                message: 'Hello',
+                n: 0
+            },
+            methods: {
+                changeMessage() {
+                    if (this.n++ > 2) this.message = 'World';
+                }
+            },
+            computed: {
+                reversedMessage() {
+                    return this.message.split('').reverse().join('');
+                }
+            }
+        });
+    </script>
+
+    <div id="app-9">
+        <input v-model="question">
+    </div>
+    <script>
+        let app9 = new Vue({
+            el: '#app-9',
+            data: {
+                firstName: 'Foo',
+                lastName: 'Bar',
+                question: ''
+            },
+            computed: {
+                fullName: function () {
+                    return this.firstName + ' ' + this.lastName;
+                }
+            },
+            watch: {
+                question (n, o) {
+                    console.log(n, o);
+                }
+            }
+        });
     </script>
 </body>
 
