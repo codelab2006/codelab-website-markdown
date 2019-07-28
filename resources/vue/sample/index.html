@@ -180,6 +180,306 @@
             }
         });
     </script>
+
+    <div id="app-10" class="box" v-bind:class="{ isA: isA, isB: isB }">BBB</div>
+    <script>
+        let app10 = new Vue({
+            el: '#app-10',
+            data: {
+                isA: true,
+                isB: true
+            }
+        });
+    </script>
+    <style>
+    .isA {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    .isB {
+        color: white;
+    }
+    </style>
+
+    <div id="app-11" v-bind:class="classObject"></div>
+    <script>
+        let app11 = new Vue({
+            el: '#app-11',
+            data: {
+                classObject: {
+                    'app-11-classA': true,
+                    'app-11-classB': true
+                }
+            }
+        });
+    </script>
+    <style>
+    .app-11-classA {
+        width: 200px;
+        height: 200px;
+    }
+    .app-11-classB {
+        background-color: blue;
+    }
+    </style>
+
+    <div id="app-12" v-bind:class="[classAName, classBName]"></div>
+    <script>
+        let app12 = new Vue({
+            el: '#app-12',
+            data: {
+                classAName: 'class-a',
+                classBName: 'class-b'
+            }
+        });
+    </script>
+    <style>
+    .class-a {
+        width: 200px;
+        height: 200px;
+    }
+    .class-b {
+        background-color: green;
+    }
+    </style>
+
+    <div id="app-13">
+        <div v-if="t1">111</div>
+        <div v-else>222</div>
+        <template v-if="t2">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+        </template>
+        <template v-if="t3">
+            <label>Username</label>
+            <input placeholder="Enter your username">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address">
+        </template>
+        <button @click="change">change</button>
+        <template v-if="t4">
+            <label>Username</label>
+            <input placeholder="Enter your username" key="un">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address" key="em">
+        </template>
+        <button @click="changet4">change</button>
+    </div>
+    <script>
+        let app13 = new Vue({
+            el: '#app-13',
+            data: {
+                t1: 0,
+                t2: 1,
+                t3: true,
+                t4: true
+            },
+            methods: {
+                change() {
+                    this.t3 = !this.t3;
+                },
+                changet4() {
+                    this.t4 = !this.t4;
+                }
+            }
+        });
+    </script>
+
+    <div id="app-14">
+        <ul>
+            <li v-for="item of items" v-bind:key="item.id">
+                {{item.text}}
+            </li>
+        </ul>
+        <button @click="push">push</button>
+        <button @click="pop">pop</button>
+        <button @click="reverse">reverse</button>
+        <button @click="changeData">changeData</button>
+    </div>
+    <script>
+        let app14 = new Vue({
+            el: '#app-14',
+            data: {
+                items: [{
+                    id: 1,
+                    text: 'a'
+                }, {
+                    id: 2,
+                    text: 'b'
+                }, {
+                    id: 3,
+                    text: 'c'
+                }]
+            },
+            methods: {
+                push() {
+                    this.items.push({id: 4, text: 'd'});
+                },
+                pop() {
+                    this.items.pop();
+                },
+                reverse() {
+                    this.items.reverse();
+                },
+                changeData() {
+                    Vue.set(this.items, 0, {id: 1, text: 'aaaaa'});
+                }
+            }
+        });
+    </script>
+
+    <div id="app-15">
+        <form v-on:submit.prevent="addNewTodo">
+            <label for="new-todo">Add a todo</label>
+            <input
+                v-model="newTodoText"
+                id="new-todo"
+                placeholder="E.g. Feed the cat"
+            >
+            <button>Add</button>
+        </form>
+        <ul>
+            <todo-item
+                v-for="(todo, index) in todos"
+                v-bind:key="todo.id"
+                v-bind:title="todo.title"
+                v-on:remove="todos.splice(index, 1)"
+            ></todo-item>
+        </ul>
+    </div>
+    <script>
+        Vue.component('todo-item', {
+            template: '<li>{{ title }}<button v-on:click="$emit(\'remove\')">Remove</button></li>',
+            props: ['title']
+        })
+        let  app15 = new Vue({
+            el: '#app-15',
+            data: {
+                newTodoText: '',
+                todos: [
+                    {
+                        id: 1,
+                        title: 'Do the dishes',
+                    },
+                    {
+                        id: 2,
+                        title: 'Take out the trash',
+                    },
+                    {
+                        id: 3,
+                        title: 'Mow the lawn'
+                    }
+                ],
+                nextTodoId: 4
+            },
+            methods: {
+                addNewTodo: function () {
+                    this.todos.push({
+                        id: this.nextTodoId++,
+                        title: this.newTodoText
+                    })
+                    this.newTodoText = ''
+                }
+            }
+        });
+    </script>
+
+    <div id="app-16">
+        <div>
+            <input v-model="textMessage" placeholder="edit me">
+            <p>message: {{textMessage}}</p>
+        </div>
+        <div>
+            <textarea v-model="multilineMessage" placeholder="add multiple lines"></textarea>
+            <p style="white-space: pre-line;">multiline message: {{multilineMessage}}</p>
+        </div>
+    </div>
+    <script>
+        let app16 = new Vue({
+            el: '#app-16',
+            data: {
+                textMessage: '',
+                multilineMessage: ''
+            }
+        });
+    </script>
+
+    <div id="app-17">
+        <com :title="title" message="Message" :number="123"></com>
+    </div>
+    <script>
+        Vue.component('com', {
+            template: '<div><div>--{{titleA}}--</div><div>--{{message}}--</div><div>--{{typeof(number)}}--</div></div>',
+            // props: {
+            //     title: String,
+            //     message: String,
+            //     number: Number
+            // },
+            props: ['title', 'message', 'number'],
+            data: function() {
+                return {
+                    titleA: this.title
+                };
+            }
+        });
+        let app17 = new Vue({
+            el: '#app-17',
+            data: {
+                title: 'App17'
+            }
+        });
+    </script>
+
+    <div id="app-18">
+        <con :m="m" a="title-app-18-a" b="title-app-18-b"></con>
+    </div>
+    <script>
+        Vue.component('con', {
+            inheritAttrs: false,
+            template: '<div :title="$attrs.a">{{$attrs}}</div>',
+            props: ['m']
+        })
+        let app18 = new Vue({
+            el: '#app-18',
+            data: {
+                m: 'mmmmm'
+            }
+        });
+    </script>
+
+    <div id="app-19">
+        <container>
+            <a href="#">link</a>
+            <template v-slot:h>
+                <div>header</div>
+            </template>
+            <ul><li>1</li><li>2</li><li>3</li></ul>
+            <template v-slot:f>
+                <div>footer</div>
+            </template>
+        </container>
+        <container></container>
+    </div>
+    <script>
+        Vue.component('container', {
+            template: `<div style="background-color: lime;"><slot name="h">H</slot><slot>N/A</slot><slot name="f">F</slot></div>`
+        })
+        let app19 = new Vue({
+            el: '#app-19',
+            data: {
+
+            }
+        });
+    </script>
+
+    <div id="app-20"></div>
+    <script></script>
 </body>
 
 </html>
