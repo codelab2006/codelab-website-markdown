@@ -3,8 +3,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
     entry: {
         application: './src/application.js'
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+        contentBase: './dist'
     },
     module: {
         rules: [{
@@ -27,7 +32,20 @@ module.exports = {
         })
     ],
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist')
+    },
+    optimization: {
+        moduleIds: 'hashed',
+        runtimeChunk: 'single',
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
     }
 };
