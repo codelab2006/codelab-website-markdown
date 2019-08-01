@@ -21,6 +21,7 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
-    "lodash": "4.17.15"
+    "lodash": "4.17.15",
+    "vue": "2.6.10"
   }
 }
